@@ -7,31 +7,55 @@ public class ContaCorrente implements Conta{
     private double saldo;
     Scanner in = new Scanner(System.in);
     
-    public ContaCorrente(String nome, int conta, double saldo_inicial){
+    private String getNome() {
+		return nome;
+	}
+
+	private int getConta() {
+		return conta;
+	}
+
+	private int getSaques() {
+		return saques;
+	}
+
+	private void setSaques(int saques) {
+		this.saques = saques;
+	}
+
+	private double getSaldo() {
+		return saldo;
+	}
+
+	private void setSaldo(double saldo) {
+		this.saldo = saldo;
+	}
+
+	public ContaCorrente(String nome, int conta, double saldo_inicial){
     	super();
-        this.nome=nome;
-        this.conta=conta;
-        saldo=saldo_inicial;
-        saques=0;
+        this.nome = nome;
+        this.conta = conta;
+        setSaldo(saldo_inicial);
+        setSaques(0);
     }
     
     public void extrato(){
         System.out.println("\n\tEXTRATO");
-        System.out.println("Nome: " + this.nome);
-        System.out.println("Número da conta: " + this.conta);
-        System.out.printf("Saldo atual: R$ %.2f\n",this.saldo);
-        System.out.println("Saques realizados hoje: " + this.saques);
-        System.out.println("Saques restantes para hoje: " + (3 - this.saques) + "\n");
+        System.out.println("Nome: " + this.getNome());
+        System.out.println("Número da conta: " + this.getConta());
+        System.out.println("Saques realizados hoje: " + this.getSaques());
+        System.out.println("Saques restantes para hoje: " + (3 - this.getSaques()));
+        System.out.printf("Saldo atual: R$ %.2f\n",this.getSaldo());
         
     }
     
     public void sacar(double valor){
     	if(valor >0){
-	        if(saldo >= valor){
-	            saldo -= valor;
-	            saques++;
+	        if(getSaldo() >= valor){
+	            setSaldo(getSaldo() - valor);
+	            setSaques(getSaques() + 1);
 	            System.out.println("Sacado: R$ " + valor);
-	            System.out.println("Novo saldo: R$ " + saldo + "\n");
+	            System.out.printf("Saldo atual: R$ %.2f\n",this.getSaldo());
 	        } else {
 	            System.out.println("\nSaldo insuficiente. Faça um depósito\n");
 	        }
@@ -43,9 +67,9 @@ public class ContaCorrente implements Conta{
     public void depositar(double valor)
     {
     	if (valor > 0){
-	        saldo += valor;
+	        setSaldo(getSaldo() + valor);
 	        System.out.println("Depositado: R$ " + valor);
-	        System.out.println("Novo saldo: R$ " + saldo + "\n");
+	        System.out.printf("Saldo atual: R$ %.2f\n",this.getSaldo());
     	} else{
     		System.out.println("\nValor inválido. Digite um valor posisito.\n");
     	}
@@ -53,14 +77,14 @@ public class ContaCorrente implements Conta{
 
 	public void transferir(int conta, String nome, double valor) {
 		if(valor >0){
-	        if(saldo >= valor){
-	            saldo -= valor;
-	            saques++;
+	        if(getSaldo() >= valor){
+	            setSaldo(getSaldo() - valor);
+	            setSaques(getSaques() + 1);
 	            System.out.println("\n\tTransferência");
 	            System.out.println("Favorecido: " + nome);
 	            System.out.println("Conta favorecida: " + conta);
-	            System.out.println("Valor transferido: R$ " + valor);
-	            System.out.println("Novo saldo: R$ " + saldo + "\n");
+	            System.out.printf("Valor transferido : R$ %.2f\n",valor);
+	            System.out.printf("Saldo atual: R$ %.2f\n",this.getSaldo());
 	        } else {
 	            System.out.println("\nSaldo insuficiente. Faça um depósito\n");
 	        }
@@ -74,7 +98,7 @@ public class ContaCorrente implements Conta{
         do{
         	Menu.exibeMenu();
             opcao = in.nextInt();
-            Menu.escolheOpcao(this, opcao, saques);
+            Menu.escolheOpcao(this, opcao, getSaques());
         }while(opcao!=5);
     }
 }
