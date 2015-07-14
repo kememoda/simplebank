@@ -19,8 +19,9 @@ public class ContaCorrente implements Conta{
         System.out.println("\n\tEXTRATO");
         System.out.println("Nome: " + this.nome);
         System.out.println("Número da conta: " + this.conta);
-        System.out.printf("Saldo atual: %.2f\n",this.saldo);
-        System.out.println("Saques realizados hoje: " + this.saques + "\n");
+        System.out.printf("Saldo atual: R$ %.2f\n",this.saldo);
+        System.out.println("Saques realizados hoje: " + this.saques);
+        System.out.println("Saques restantes para hoje: " + (3 - this.saques) + "\n");
         
     }
     
@@ -29,8 +30,8 @@ public class ContaCorrente implements Conta{
 	        if(saldo >= valor){
 	            saldo -= valor;
 	            saques++;
-	            System.out.println("Sacado: " + valor);
-	            System.out.println("Novo saldo: " + saldo + "\n");
+	            System.out.println("Sacado: R$ " + valor);
+	            System.out.println("Novo saldo: R$ " + saldo + "\n");
 	        } else {
 	            System.out.println("\nSaldo insuficiente. Faça um depósito\n");
 	        }
@@ -43,12 +44,30 @@ public class ContaCorrente implements Conta{
     {
     	if (valor > 0){
 	        saldo += valor;
-	        System.out.println("Depositado: " + valor);
-	        System.out.println("Novo saldo: " + saldo + "\n");
+	        System.out.println("Depositado: R$ " + valor);
+	        System.out.println("Novo saldo: R$ " + saldo + "\n");
     	} else{
     		System.out.println("\nValor inválido. Digite um valor posisito.\n");
     	}
     }
+
+	public void transferir(int conta, String nome, double valor) {
+		if(valor >0){
+	        if(saldo >= valor){
+	            saldo -= valor;
+	            saques++;
+	            System.out.println("\n\tTransferência");
+	            System.out.println("Favorecido: " + nome);
+	            System.out.println("Conta favorecida: " + conta);
+	            System.out.println("Valor transferido: R$ " + valor);
+	            System.out.println("Novo saldo: R$ " + saldo + "\n");
+	        } else {
+	            System.out.println("\nSaldo insuficiente. Faça um depósito\n");
+	        }
+    	} else {
+    		System.out.println("\nValor inválido. Digite um valor positivo.\n");
+    	}		
+	}
     
     public void iniciar(){
         int opcao;
@@ -57,7 +76,7 @@ public class ContaCorrente implements Conta{
             exibeMenu();
             opcao = in.nextInt();
             escolheOpcao(opcao);
-        }while(opcao!=4);
+        }while(opcao!=5);
     }
     
     public void exibeMenu(){
@@ -66,13 +85,16 @@ public class ContaCorrente implements Conta{
         System.out.println("1 - Consultar Extrato");
         System.out.println("2 - Sacar");
         System.out.println("3 - Depositar");
-        System.out.println("4 - Sair\n");
+        System.out.println("4 - Transferir");
+        System.out.println("5 - Sair\n");
         System.out.print("Opção: ");
         
     }
     
     public void escolheOpcao(int opcao){
         double valor;
+        String nome;
+        int conta;
         
         switch( opcao ){
             case 1:    
@@ -93,8 +115,16 @@ public class ContaCorrente implements Conta{
                     valor = in.nextDouble();
                     depositar(valor);
                     break;
-                    
-            case 4: 
+            case 4:
+	                System.out.print("Quanto deseja transferir: ");
+	                valor = in.nextDouble();
+	                System.out.print("Qual o número da conta favorecida: ");
+	                conta = in.nextInt();
+	                System.out.print("Qual o nome do favorecido: ");
+	                nome = in.next();
+	                transferir(conta, nome, valor);
+	                break;                    
+            case 5: 
                     System.out.println("Sistema encerrado.");
                     break;
                     

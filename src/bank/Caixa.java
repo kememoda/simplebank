@@ -15,10 +15,12 @@ public class Caixa {
     
         //Obtendo os dados iniciais do Cliente
         System.out.println("Cadastrando novo cliente.");
-        System.out.print("Ente com seu nome: ");
+        System.out.print("Digite o seu nome: ");
         nome = in.nextLine();
+        System.out.print("Digite o seu sobrenome: ");
+        nome += " "+in.nextLine();
         
-        System.out.print("Entre com o valor inicial depositado na conta: ");
+        System.out.print("Digite o valor para o depósito inicial na conta: ");
         inicial = in.nextDouble();
         
         //Criando a conta de um cliente
