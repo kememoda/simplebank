@@ -22,7 +22,7 @@ public class Caixa {
         inicial = in.nextDouble();
         
         //Criando a conta de um cliente
-        Conta minhaConta = new Conta(nome, conta, inicial);
+        ContaCorrente minhaConta = new ContaCorrente(nome, conta, inicial);
         minhaConta.iniciar();
     }
     
