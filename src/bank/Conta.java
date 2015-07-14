@@ -5,7 +5,7 @@ public class Conta {
     private String nome;
     private int conta, saques;
     private double saldo;
-    Scanner entrada = new Scanner(System.in);
+    Scanner in = new Scanner(System.in);
     
     public Conta(String nome, int conta, double saldo_inicial){
         this.nome=nome;
@@ -54,7 +54,7 @@ public class Conta {
 
         do{
             exibeMenu();
-            opcao = entrada.nextInt();
+            opcao = in.nextInt();
             escolheOpcao(opcao);
         }while(opcao!=4);
     }
@@ -66,7 +66,7 @@ public class Conta {
         System.out.println("2 - Sacar");
         System.out.println("3 - Depositar");
         System.out.println("4 - Sair\n");
-        System.out.println("Opção: ");
+        System.out.print("Opção: ");
         
     }
     
@@ -80,7 +80,7 @@ public class Conta {
             case 2: 
                     if(saques<3){
                         System.out.print("Quanto deseja sacar: ");
-                        valor = entrada.nextDouble();
+                        valor = in.nextDouble();
                         sacar(valor);
                     } else{
                         System.out.println("Limite de saques diários atingidos.\n");
@@ -89,7 +89,7 @@ public class Conta {
                     
             case 3:
                     System.out.print("Quanto deseja depositar: ");
-                    valor = entrada.nextDouble();
+                    valor = in.nextDouble();
                     depositar(valor);
                     break;
                     
@@ -98,7 +98,7 @@ public class Conta {
                     break;
                     
             default:
-                    System.out.print("Opção inválida");
+                    System.out.println("Opção inválida");
         }
     }
 }
