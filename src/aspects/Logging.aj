@@ -10,6 +10,7 @@ public privileged aspect Logging {
 	pointcut log(): execution(* ContaCorrente.*(*)) ||
 					execution(* Menu.*(*)) ||
 					execution(* Caixa.*(*)) ||
+					execution(* Caixa.*(*,*)) ||
 					execution(* *.*()) ||
 					execution(* *.*(*,*,*));
 //				    execution(public void Conta.depositar(double));
