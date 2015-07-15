@@ -15,7 +15,7 @@ public class Menu {
         System.out.print("Opção: ");
     }
 	
-	public static void escolheOpcao(Conta conta, int opcao, int saques){
+	public static void escolheOpcao(Conta conta, int opcao, int saques_restantes){
         double valor;
         String nome;
         int numero_conta;
@@ -24,7 +24,7 @@ public class Menu {
                     conta.extrato();
                     break;
             case 2: 
-                    if(saques < 3){
+                    if(saques_restantes > 0){
                         System.out.print("Quanto deseja sacar: ");
                         valor = in.nextDouble();
                         conta.sacar(valor);

@@ -7,7 +7,7 @@ public class ContaCorrente implements Conta{
     private double saldo;
     Scanner in = new Scanner(System.in);
     
-    private int getSaquesRestantes(){
+    public int getSaquesRestantes(){
     	return 3 - getSaques();
     }
     
@@ -97,13 +97,4 @@ public class ContaCorrente implements Conta{
     		System.out.println("\nValor inválido. Digite um valor positivo.\n");
     	}		
 	}
-    
-    public void iniciar(){
-        int opcao;
-        do{
-        	Menu.exibeMenu();
-            opcao = in.nextInt();
-            Menu.escolheOpcao(this, opcao, getSaques());
-        }while(opcao!=5);
-    }
 }

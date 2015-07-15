@@ -6,6 +6,5 @@ public interface Conta {
 	public void sacar(double valor);
 	public void depositar(double valor);
 	public void transferir(int conta, String nome, double valor);
-	public void iniciar();
-	
+	public int getSaquesRestantes();	
 }
