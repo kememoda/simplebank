@@ -7,6 +7,10 @@ public class ContaCorrente implements Conta{
     private double saldo;
     Scanner in = new Scanner(System.in);
     
+    private int getSaquesRestantes(){
+    	return 3 - getSaques();
+    }
+    
     private String getNome() {
 		return nome;
 	}
@@ -41,11 +45,11 @@ public class ContaCorrente implements Conta{
     
     public void extrato(){
         System.out.println("\n\tEXTRATO");
-        System.out.println("Nome: " + this.getNome());
-        System.out.println("Número da conta: " + this.getConta());
-        System.out.println("Saques realizados hoje: " + this.getSaques());
-        System.out.println("Saques restantes para hoje: " + (3 - this.getSaques()));
-        System.out.printf("Saldo atual: R$ %.2f\n",this.getSaldo());
+//        System.out.println("Nome: " + this.getNome());
+//        System.out.println("Número da conta: " + this.getConta());
+//        System.out.println("Saques realizados hoje: " + this.getSaques());
+//        System.out.println("Saques restantes para hoje: " + getSaquesRestantes());
+//        System.out.printf("Saldo atual: R$ %.2f\n",this.getSaldo());
         
     }
     
@@ -54,8 +58,9 @@ public class ContaCorrente implements Conta{
 	        if(getSaldo() >= valor){
 	            setSaldo(getSaldo() - valor);
 	            setSaques(getSaques() + 1);
+	            System.out.println("\n\tSAQUE");
 	            System.out.println("Sacado: R$ " + valor);
-	            System.out.printf("Saldo atual: R$ %.2f\n",this.getSaldo());
+//	            System.out.printf("Saldo atual: R$ %.2f\n",this.getSaldo());
 	        } else {
 	            System.out.println("\nSaldo insuficiente. Faça um depósito\n");
 	        }
@@ -68,8 +73,9 @@ public class ContaCorrente implements Conta{
     {
     	if (valor > 0){
 	        setSaldo(getSaldo() + valor);
+	        System.out.println("\n\tDEPÓSITO");
 	        System.out.println("Depositado: R$ " + valor);
-	        System.out.printf("Saldo atual: R$ %.2f\n",this.getSaldo());
+//	        System.out.printf("Saldo atual: R$ %.2f\n",this.getSaldo());
     	} else{
     		System.out.println("\nValor inválido. Digite um valor posisito.\n");
     	}
@@ -81,10 +87,10 @@ public class ContaCorrente implements Conta{
 	            setSaldo(getSaldo() - valor);
 	            setSaques(getSaques() + 1);
 	            System.out.println("\n\tTransferência");
-	            System.out.println("Favorecido: " + nome);
-	            System.out.println("Conta favorecida: " + conta);
-	            System.out.printf("Valor transferido : R$ %.2f\n",valor);
-	            System.out.printf("Saldo atual: R$ %.2f\n",this.getSaldo());
+//	            System.out.println("Favorecido: " + nome);
+//	            System.out.println("Conta favorecida: " + conta);
+//	            System.out.printf("Valor transferido : R$ %.2f\n",valor);
+//	            System.out.printf("Saldo atual: R$ %.2f\n",this.getSaldo());
 	        } else {
 	            System.out.println("\nSaldo insuficiente. Faça um depósito\n");
 	        }
